@@ -6,7 +6,6 @@ import theme from '../components/theme.js'
 
 const Dashboard = () => {
   return (
-    <ThemeProvider theme={theme}>
       <Box
         sx={{
           bgcolor: 'background.default',
@@ -17,7 +16,6 @@ const Dashboard = () => {
         }}>
         <Typography variant="h4">Dashboard</Typography>
       </Box>
-    </ThemeProvider>
   );
 };
 

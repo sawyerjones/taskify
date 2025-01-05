@@ -15,7 +15,6 @@ const SignIn = () => {
         navigate('/dashboard');
     };
     return (
-        <ThemeProvider theme={theme}>
           <Box
             sx={{
             backgroundColor: 'background.default',
@@ -24,10 +23,9 @@ const SignIn = () => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              color: "white",
               gap: 3,
             }}>
-            <Typography variant="h4" component="h1" gutterBottom>
+            <Typography variant="h1" component="h1" gutterBottom>
               Welcome to *NAME*
             </Typography>
             <Box
@@ -40,7 +38,9 @@ const SignIn = () => {
                   minWidth: '120px',
                   '&:hover': {
                     backgroundColor: '#333333'
-                  }
+                  },
+                  fontSize: '1.3rem',
+                  padding: '10px 28px'
                 }}>
                 Sign Up
               </Button>
@@ -49,13 +49,14 @@ const SignIn = () => {
                   minWidth: '120px',
                   '&:hover': {
                     backgroundColor: '#333333'
-                  }
+                  },
+                  fontSize: '1.3rem',
+                  padding: '10px 28px'
                 }}>
-                Sign In
+                Log In
               </Button>
               </Box>
             </Box>
-        </ThemeProvider>
       );
 }
 

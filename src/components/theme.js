@@ -1,22 +1,38 @@
 import { createTheme } from '@mui/material/styles';
+import '@fontsource/kanit/100.css';
+import '@fontsource/kanit/200.css';
+import '@fontsource/kanit/300.css';
+import '@fontsource/kanit/400.css';
+import '@fontsource/kanit/500.css';
+import '@fontsource/kanit/600.css';
+import '@fontsource/kanit/700.css';
+import '@fontsource/kanit/800.css';
+import '@fontsource/kanit/900.css';
+
 
 const theme = createTheme({
-    typography: {
+      typography: {
         fontFamily: [
-          'Poppins',
-          'Roboto',
+          'Kanit',
           'Arial',
           'sans-serif'
         ].join(','),
         h1: {
-          fontFamily: 'Poppins, sans-serif',
           fontWeight: 600,
-          fontSize: '2.5rem',
+          fontSize: '3rem',
         },
         h4: {
-          fontFamily: 'Poppins, sans-serif',
           fontWeight: 500,
           fontSize: '1.75rem',
+        },
+        body1: {
+          fontWeight: 400,
+        },
+        body2: {
+          fontWeight: 400,
+        },
+        button: {
+          fontWeight: 500,
         }
     },
 
