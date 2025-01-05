@@ -3,10 +3,11 @@ import { Button, Box, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../components/theme.js'
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+
 
 const SignIn = () => {
     const navigate = useNavigate();
+    //TODO: update to handle actual login capabilities
     const handleSignUp = () => {
         navigate('/dashboard');
       };
@@ -15,15 +16,15 @@ const SignIn = () => {
     };
     return (
         <ThemeProvider theme={theme}>
-        <div className="App">
-          <header className="App-header">
           <Box
             sx={{
+            backgroundColor: 'background.default',
               height: '100vh',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
+              color: "white",
               gap: 3,
             }}>
             <Typography variant="h4" component="h1" gutterBottom>
@@ -54,9 +55,6 @@ const SignIn = () => {
               </Button>
               </Box>
             </Box>
-           
-          </header>
-        </div>
         </ThemeProvider>
       );
 }

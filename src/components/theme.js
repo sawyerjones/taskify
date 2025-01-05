@@ -21,6 +21,9 @@ const theme = createTheme({
     },
 
     palette: {
+      background: {
+        default: '#36454F',
+      },
       signs: {
         main: "#656565",
         contrastText: '#fff',
