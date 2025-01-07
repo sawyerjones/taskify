@@ -20,10 +20,12 @@ const theme = createTheme({
         h1: {
           fontWeight: 600,
           fontSize: '3rem',
+          color: 'white',
         },
         h4: {
           fontWeight: 500,
           fontSize: '1.75rem',
+          color: 'white',
         },
         body1: {
           fontWeight: 400,

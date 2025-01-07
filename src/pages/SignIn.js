@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, Box, Typography } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../components/theme.js'
 import { useNavigate } from 'react-router-dom';
 
 

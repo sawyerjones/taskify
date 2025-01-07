@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
-import theme from '../components/theme.js'
-
+import Sidebar from '../components/Sidebar.jsx';
 
 const Dashboard = () => {
   return (
@@ -15,6 +13,7 @@ const Dashboard = () => {
           padding: 3
         }}>
         <Typography variant="h4">Dashboard</Typography>
+        <Sidebar/>
       </Box>
   );
 };
