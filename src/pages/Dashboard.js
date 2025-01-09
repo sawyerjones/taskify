@@ -12,8 +12,19 @@ const Dashboard = () => {
           flexDirection: 'column',
           padding: 3
         }}>
-        <Typography variant="h4">Dashboard</Typography>
         <Sidebar/>
+        <Box sx={{ marginLeft: '5vh' }}>  
+          <Typography variant="h4">Dashboard</Typography>
+        </Box>
+        <Box
+          sx={{
+            marginTop: '0.5vh',
+            border: '3px solid #000',
+            borderRadius: '16px',
+            minHeight: '80vh'
+          }}>
+
+        </Box>
       </Box>
   );
 };
