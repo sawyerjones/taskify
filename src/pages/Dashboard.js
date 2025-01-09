@@ -14,12 +14,12 @@ const Dashboard = () => {
           padding: 3
         }}>
         <Sidebar/>
-        <Box sx={{ marginLeft: '5vh' }}>  
+        <Box sx={{ marginLeft: '5vh', marginBottom: '2vh' }}>  
           <Typography variant="h4">Dashboard</Typography>
         </Box>
         <Box // Main container
           sx={{
-            marginTop: '0.5vh',
+            margin: '0.5vh',
             border: '3px solid #000',
             borderRadius: '16px',
             minHeight: '80vh',
@@ -27,13 +27,19 @@ const Dashboard = () => {
             gridTemplateColumns: 'repeat(2, 1fr)', // 2 equal columns
             //gridTemplate: 'repeat(2, 1fr)',
             gap: 2,
-            padding: 2  
+            //padding: 1  
           }}>
             <Box sx={DashboardBox}>
             <Typography variant="h4">Today</Typography>
             </Box>
             <Box sx={DashboardBox}>
-            <Typography variant="h4">Today</Typography>
+            <Typography variant="h4">Projects</Typography>
+            </Box>
+            <Box sx={DashboardBox}>
+            <Typography variant="h4">Upcoming</Typography>
+            </Box>
+            <Box sx={DashboardBox}>
+            <Typography variant="h4">TBD</Typography>
             </Box>
             
         </Box>
