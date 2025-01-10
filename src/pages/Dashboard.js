@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Sidebar from '../components/Sidebar.jsx';
-import { DashboardBox } from '../components/DashboardBox';
+import { DashboardBox } from '../components/DashboardBox.js';
+import TodoList from '../components/TodoList.js';
 
 const Dashboard = () => {
   return (
@@ -17,7 +18,7 @@ const Dashboard = () => {
         <Box sx={{ marginLeft: '5vh', marginBottom: '2vh' }}>  
           <Typography variant="h4">Dashboard</Typography>
         </Box>
-        <Box // Main container
+        <Box // main container
           sx={{
             margin: '0.5vh',
             border: '3px solid #000',
@@ -31,6 +32,7 @@ const Dashboard = () => {
           }}>
             <Box sx={DashboardBox}>
             <Typography variant="h4">Today</Typography>
+            <TodoList></TodoList>
             </Box>
             <Box sx={DashboardBox}>
             <Typography variant="h4">Projects</Typography>
