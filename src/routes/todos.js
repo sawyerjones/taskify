@@ -28,4 +28,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// delete
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query(
+      'DELETE FROM todos WHERE id = $1',
+      [id]
+    );
+    res.json({ message: "Todo deleted successfully" });
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;

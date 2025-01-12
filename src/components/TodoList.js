@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { useFormControl } from '@mui/material/FormControl';
-import { fetchTodos, createTodo } from '../components/api.js';
+import { fetchTodos, createTodo, deleteTodo } from '../components/api.js';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
@@ -9,7 +9,7 @@ const TodoList = () => {
     // loads after mount, fetches initial data
     useEffect(() => {
       loadTodos();
-    });
+    }, []);
   
     const loadTodos = async () => {
       try {
@@ -34,7 +34,20 @@ const TodoList = () => {
       } catch (error) {
         console.error('Failed to create new todo: ', error);
       }
-    }
+    };
+
+    const handleDelete = async (todoID) => {
+      console.log('handleDelete called with id: ', todoID);
+      try {
+        // remove from db
+        await deleteTodo(todoID);
+        // remove from render
+        setTodos(todos.filter(todo => todo.id !== todoID));
+      } catch (error) {
+        console.error('Failed to delete todo', error);
+      }
+    };
+
     return(
         <div>
         <form onSubmit={handleSubmit}>
@@ -51,6 +64,12 @@ const TodoList = () => {
           {todos.map(todo => (
             <li key={todo.id}>
               {todo.title}
+              <button
+                onClick={() => {
+                  console.log('Deleting id: ', todo.id);
+                  handleDelete(todo.id)}}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
