@@ -37,7 +37,6 @@ const TodoList = () => {
     };
 
     const handleDelete = async (todoID) => {
-      console.log('handleDelete called with id: ', todoID);
       try {
         // remove from db
         await deleteTodo(todoID);
