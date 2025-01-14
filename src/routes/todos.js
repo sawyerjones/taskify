@@ -38,7 +38,7 @@ router.delete('/:id', async (req, res) => {
     );
     res.json({ message: "Todo deleted successfully" });
   } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).send('Server error');
   }
 });

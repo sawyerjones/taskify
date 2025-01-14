@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
-import { useFormControl } from '@mui/material/FormControl';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import { fetchTodos, createTodo, deleteTodo } from '../components/api.js';
+import { IconButton } from '@mui/material';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
@@ -50,25 +51,40 @@ const TodoList = () => {
     return(
         <div>
         <form onSubmit={handleSubmit}>
+        <IconButton
+        type='submit'
+        sx={{
+          color: 'white',
+          '&:hover': {
+            color: 'gray'
+          },
+        }}
+        
+      >
+        <AddCircleOutlineOutlinedIcon />
+      </IconButton>
           <input
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            placeholder="New todo..."
+            placeholder="Add Task"
           />
-          <button type="submit">Add Todo</button>
         </form>
   
-        <ul>
+        <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'white'}}>
           {todos.map(todo => (
             <li key={todo.id}>
+              <IconButton onClick={() => handleDelete(todo.id)}
+                sx={{
+                  color: 'white',
+                  '&:hover': {
+                    color: 'gray'
+                  },
+                }}>
+                <CheckCircleOutlinedIcon />
+              </IconButton>
               {todo.title}
-              <button
-                onClick={() => {
-                  console.log('Deleting id: ', todo.id);
-                  handleDelete(todo.id)}}>
-                Delete
-              </button>
+
             </li>
           ))}
         </ul>
@@ -77,8 +93,7 @@ const TodoList = () => {
   };
 
   export default TodoList;
-
-  /*
+/*
   - dont allow blank todos
   - allow completetion (deletion) of exisisting todos
   - styling
