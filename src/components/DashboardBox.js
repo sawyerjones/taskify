@@ -5,7 +5,6 @@ export const DashboardBox = {
     paddingLeft: "12px",
     paddingTop: '6px',
     '&:hover': {
-      backgroundColor: '#333333'
+      backgroundColor: '#595959'
     },
   };
-  
