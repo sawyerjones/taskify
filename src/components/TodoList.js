@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import TextField from '@mui/material/TextField';
 import { fetchTodos, createTodo, deleteTodo } from '../components/api.js';
 import { IconButton } from '@mui/material';
+import { TodoTextField } from './TodoTextField.js';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
@@ -58,17 +60,18 @@ const TodoList = () => {
           '&:hover': {
             color: 'gray'
           },
-        }}
-        
-      >
+          marginTop: '0.5vh',
+        }}>
         <AddCircleOutlineOutlinedIcon />
       </IconButton>
-          <input
-            type="text"
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            placeholder="Add Task"
-          />
+          <TextField
+          id="outlined-flexible"
+          label=""
+          maxRows={1}
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          sx={TodoTextField}
+        />
         </form>
   
         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'white'}}>

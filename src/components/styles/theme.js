@@ -37,7 +37,6 @@ const theme = createTheme({
           fontWeight: 500,
         }
     },
-
     palette: {
       background: {
         default: '#36454F',
