@@ -50,3 +50,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+/*
+Make add todo just a '+', on press modal with large, detailed creation window
+*/
