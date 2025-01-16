@@ -20,11 +20,15 @@ CREATE TABLE public.todos (
     user_id integer,
     title text NOT NULL,
     completed boolean DEFAULT false,
-    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    deadline timestamp
 );
 
 
 ALTER TABLE public.todos OWNER TO ${DB_USER};
+
+-- idx for deadline queries
+CREATE INDEX deadline_idx ON public.todos(deadline);
 
 -- Name: todos_id_seq; Type: SEQUENCE; Schema: public; Owner: ${DB_USER}
 CREATE SEQUENCE public.todos_id_seq
@@ -90,6 +94,6 @@ ALTER TABLE ONLY public.todos
 
 -- psql ${DB_USER} < src/db/schema.sql
 -- BASH FOR UPDATES
--- dropdb your_database_name
--- createdb your_database_name
--- psql your_database_name < schema.sql
+-- dropdb todo_db
+-- createdb todo_db
+-- psql todo_db < src/db/schema.sql
