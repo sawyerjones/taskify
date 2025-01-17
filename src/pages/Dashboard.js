@@ -5,6 +5,7 @@ import { DashboardBox } from '../components/DashboardBox.js';
 import TodoList from '../components/TodoList.js';
 
 const Dashboard = () => {
+  document.body.style.overflow = 'hidden';
   return (
       <Box
         sx={{
@@ -12,7 +13,8 @@ const Dashboard = () => {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          padding: 3
+          padding: 3,
+          overflow: 'hidden'
         }}>
         <Sidebar/>
         <Box sx={{ marginLeft: '5vh', marginBottom: '2vh' }}>  
@@ -25,7 +27,7 @@ const Dashboard = () => {
             borderRadius: '16px',
             minHeight: '80vh',
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)', // 2 equal columns
+            gridTemplateColumns: 'repeat(4, 1fr)', // 2 equal columns
             //gridTemplate: 'repeat(2, 1fr)',
             gap: 2,
             //padding: 1  
@@ -53,4 +55,5 @@ export default Dashboard;
 
 /*
 Make add todo just a '+', on press modal with large, detailed creation window
+Make 4 columns collapse into 2 on smaller screen widths
 */
