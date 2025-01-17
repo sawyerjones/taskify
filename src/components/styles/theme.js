@@ -20,12 +20,12 @@ const theme = createTheme({
         h1: {
           fontWeight: 600,
           fontSize: '3rem',
-          color: 'white',
+          color: 'black',
         },
         h4: {
           fontWeight: 500,
           fontSize: '1.75rem',
-          color: 'white',
+          color: 'black',
         },
         body1: {
           fontWeight: 400,
@@ -39,7 +39,7 @@ const theme = createTheme({
     },
     palette: {
       background: {
-        default: '#36454F',
+        default: 'white',
       },
       signs: {
         main: "#656565",

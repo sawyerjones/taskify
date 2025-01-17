@@ -17,8 +17,8 @@ const Dashboard = () => {
           overflow: 'hidden'
         }}>
         <Sidebar/>
-        <Box sx={{ marginLeft: '5vh', marginBottom: '2vh' }}>  
-          <Typography variant="h4">Dashboard</Typography>
+        <Box sx={{ marginLeft: '5vh', position: 'relative'}}>  
+          <Typography variant="h2">Dashboard</Typography>
         </Box>
         <Box // main container
           sx={{
@@ -33,17 +33,17 @@ const Dashboard = () => {
             //padding: 1  
           }}>
             <Box sx={DashboardBox}>
-            <Typography variant="h4">Today</Typography>
+            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Today</Typography>
             <TodoList></TodoList>
             </Box>
             <Box sx={DashboardBox}>
-            <Typography variant="h4">Projects</Typography>
+            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
             </Box>
             <Box sx={DashboardBox}>
-            <Typography variant="h4">Upcoming</Typography>
+            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Upcoming</Typography>
             </Box>
             <Box sx={DashboardBox}>
-            <Typography variant="h4">TBD</Typography>
+            <Typography variant="h4" sx={{paddingLeft: '10px'}}>TBD</Typography>
             </Box>
             
         </Box>
