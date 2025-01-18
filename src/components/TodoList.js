@@ -156,17 +156,5 @@ const TodoList = () => {
 
   export default TodoList;
 /*
-  - dont allow blank todos
-  - allow completetion (deletion) of exisisting todos
   - styling
-  */
-/*
-<TextField
-          id="outlined-flexible"
-          label=""
-          maxRows={1}
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          sx={TodoTextField}
-/>
 */

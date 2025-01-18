@@ -27,10 +27,8 @@ const Dashboard = () => {
             borderRadius: '16px',
             minHeight: '80vh',
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)', // 2 equal columns
-            //gridTemplate: 'repeat(2, 1fr)',
+            gridTemplateColumns: 'repeat(4, 1fr)', // 4 equal columns TODO: make collapsable into 2 on smaller screens
             gap: 2,
-            //padding: 1  
           }}>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Today</Typography>
@@ -54,6 +52,5 @@ const Dashboard = () => {
 export default Dashboard;
 
 /*
-Make add todo just a '+', on press modal with large, detailed creation window
-Make 4 columns collapse into 2 on smaller screen widths
+Add calendar input
 */
