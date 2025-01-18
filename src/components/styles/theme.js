@@ -38,6 +38,15 @@ const theme = createTheme({
         }
     },
     palette: {
+      primary: {
+        main: 'black', 
+      },
+      secondary: {
+        main: 'gray', 
+      },
+      tertiary: {
+        main: 'green'
+      },
       background: {
         default: 'white',
       },

@@ -28,6 +28,7 @@ const TodoList = () => {
       // stop page refresh
       e.preventDefault();
       try {
+        if (newTitle === '') return; // TODO: improve w/ error message
         const newTodo = await createTodo({
           title: newTitle,
           user_id: process.env.DB_USER, // UPDATE W/ ID ASSOCIATED W/ LOGIN
@@ -111,18 +112,7 @@ const TodoList = () => {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="Task name"
-                sx={{ 
-                  mb: 2,
-                  '& .MuiInputBase-input': {
-                    color: 'black',
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'black',
-                  },
-                  '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'black',
-                  },
-                }}
+                sx={TodoTextField}
               />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
                 <Button 
@@ -130,7 +120,7 @@ const TodoList = () => {
                   type="submit"
                   sx={{ 
                     bgcolor: 'white',
-                    color: 'black',
+                    color: 'primary.main !important',
                     '&:hover': {
                       bgcolor: 'rgba(255, 255, 255, 0.8)',
                     }
