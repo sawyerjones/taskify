@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/material';
 import { fetchTodos, createTodo, deleteTodo } from '../components/api.js';
 import { TodoTextField } from './TodoTextField.js';
@@ -80,8 +81,8 @@ const TodoList = () => {
           open={todoToggle}
           onClose={() => setTodoToggle(false)}
           aria-labelledby="modal-modal-title"
-      >
-        <Box sx={{
+        >
+          <Box sx={{
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -97,16 +98,57 @@ const TodoList = () => {
               <Typography id="modal-modal-title" variant="h6" sx={{ color: 'black' }}>
                 Create New Todo
               </Typography>
+              <IconButton 
+                onClick={() => setTodoToggle(false)}
+                sx={{ color: 'black' }}
+              >
+                <CloseIcon />
+              </IconButton>
             </Box>
-        </Box>
-      </Modal>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                fullWidth
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                placeholder="Task name"
+                sx={{ 
+                  mb: 2,
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'black',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'black',
+                  },
+                }}
+              />
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+                <Button 
+                  variant="contained"
+                  type="submit"
+                  sx={{ 
+                    bgcolor: 'white',
+                    color: 'black',
+                    '&:hover': {
+                      bgcolor: 'rgba(255, 255, 255, 0.8)',
+                    }
+                  }}
+                >
+                  Add Todo
+                </Button>
+              </Box>
+            </form>
+          </Box>
+        </Modal>
   
-        <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'white'}}>
+        <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
           {todos.map(todo => (
             <li key={todo.id}>
               <IconButton onClick={() => handleDelete(todo.id)}
                 sx={{
-                  color: 'white',
+                  color: 'black',
                   '&:hover': {
                     color: 'gray'
                   },

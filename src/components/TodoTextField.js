@@ -5,7 +5,7 @@ export const TodoTextField = {
           height: '6vh',
           width: '100%',
           marginTop: '0.5vh',
-          color: 'white'
+          color: 'black'
         },
         '&:hover fieldset': { // colors on hover
           borderColor: '#8ca2b0',
@@ -15,7 +15,7 @@ export const TodoTextField = {
           backgroundColor: '36454F'
         },
         '& .MuiInputBase-input': { // text
-            color: 'white',
+            color: 'black',
         }
       },
 };
