@@ -4,6 +4,6 @@ export const DashboardBox = {
     borderRadius: '16px',
     paddingTop: '6px',
     '&:hover': {
-      backgroundColor: 'grey'
+      backgroundColor: 'rgb(220,220,220)'
     },
   };

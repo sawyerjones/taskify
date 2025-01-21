@@ -39,13 +39,13 @@ const theme = createTheme({
     },
     palette: {
       primary: {
-        main: 'black', 
+        main: '#000', 
       },
       secondary: {
-        main: 'gray', 
+        main: '#888', 
       },
       tertiary: {
-        main: 'green'
+        main: '#fff'
       },
       background: {
         default: 'white',

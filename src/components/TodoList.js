@@ -66,9 +66,9 @@ const TodoList = () => {
             color: 'black',
             padding: '8px 16px',
             borderRadius: '8px',
-            bgcolor: 'rgba(255, 255, 255, 0.5)',
+            bgcolor: 'rgba(255, 255, 255, 1)',
             '&:hover': {
-              bgcolor: 'rgba(255, 255, 255, 1)',
+              bgcolor: 'rgba(255, 255, 255, .5)',
               color: 'black',
             },
         }}>
@@ -120,7 +120,7 @@ const TodoList = () => {
                   type="submit"
                   sx={{ 
                     bgcolor: 'white',
-                    color: 'primary.main !important',
+                    color: 'black',
                     '&:hover': {
                       bgcolor: 'rgba(255, 255, 255, 0.8)',
                     }
@@ -135,10 +135,11 @@ const TodoList = () => {
   
         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
           {todos.map(todo => (
-            <li key={todo.id}>
+            <li key={todo.id} style={{ color: 'black', fontSize: '1.3rem',}}>
               <IconButton onClick={() => handleDelete(todo.id)}
                 sx={{
                   color: 'black',
+                  paddingRight: '12px',
                   '&:hover': {
                     color: 'gray'
                   },
