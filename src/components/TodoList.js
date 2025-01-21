@@ -1,7 +1,9 @@
+// handles Today col
 import React, { useState, useEffect } from 'react';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import dayjs from 'dayjs';
 import TodoCal from './TodoCal.js';
 import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/material';
 import { fetchTodos, createTodo, deleteTodo } from './api.js';
@@ -64,6 +66,13 @@ const TodoList = () => {
     const handleDateChange = (date) => {
       setSelectedDate(date);
     };
+
+    // filter today's todos
+    const filteredTodos = todos.filter(todo => {
+      if (!todo.deadline) return false;
+      const todoDate = dayjs(todo.deadline);
+      return todoDate.format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD');
+    });
 
     return(
     <div>
@@ -151,22 +160,27 @@ const TodoList = () => {
         </Modal>
   
         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
-          {todos.map(todo => (
-            <li key={todo.id} style={{ color: 'black', fontSize: '1.3rem',}}>
-              <IconButton onClick={() => handleDelete(todo.id)}
-                sx={{
-                  color: 'black',
-                  paddingRight: '12px',
-                  '&:hover': {
-                    color: 'gray'
-                  },
-                }}>
-                <CheckCircleOutlinedIcon />
-              </IconButton>
-              {todo.title}
-
-            </li>
-          ))}
+        {filteredTodos.length === 0 ? (
+            <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
+              Nothing Due Today
+            </Typography>
+          ) : (
+            filteredTodos.map(todo => (
+              <li key={todo.id} style={{ color: 'black', fontSize: '1.3rem',}}>
+                <IconButton onClick={() => handleDelete(todo.id)}
+                  sx={{
+                    color: 'black',
+                    paddingRight: '12px',
+                    '&:hover': {
+                      color: 'gray'
+                    },
+                  }}>
+                  <CheckCircleOutlinedIcon />
+                </IconButton>
+                {todo.title}
+              </li>
+            ))
+          )}
         </ul>
       </div>
     );
