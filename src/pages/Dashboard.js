@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Sidebar from '../components/Sidebar.jsx';
-import { DashboardBox } from '../components/DashboardBox.js';
+import { DashboardBox } from '../components/styles/DashboardBox.js';
 import TodoList from '../components/TodoList.js';
 
 const Dashboard = () => {

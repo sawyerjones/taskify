@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import TodoCal from './TodoCal.js';
 import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/material';
-import { fetchTodos, createTodo, deleteTodo } from '../components/api.js';
-import { TodoTextField } from './TodoTextField.js';
+import { fetchTodos, createTodo, deleteTodo } from './api.js';
+import { TodoTextField } from './styles/TodoTextField.js';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
     const [newTitle, setNewTitle] = useState('');
     const [todoToggle, setTodoToggle] = useState(false); 
+    const [selectedDate, setSelectedDate] = useState(null);
     // loads after mount, fetches initial data
     useEffect(() => {
       loadTodos();
@@ -50,6 +52,10 @@ const TodoList = () => {
       } catch (error) {
         console.error('Failed to delete todo', error);
       }
+    };
+
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
     };
 
     return(
@@ -115,6 +121,10 @@ const TodoList = () => {
                 sx={TodoTextField}
               />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+                <TodoCal 
+                  selectedDate={selectedDate}
+                  onDateChange={handleDateChange}
+                />
                 <Button 
                   variant="contained"
                   type="submit"
@@ -157,5 +167,5 @@ const TodoList = () => {
 
   export default TodoList;
 /*
-  - styling
+  - styling, make "add new todo" button size dynamically
 */
