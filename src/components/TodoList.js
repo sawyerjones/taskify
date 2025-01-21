@@ -31,13 +31,20 @@ const TodoList = () => {
       e.preventDefault();
       try {
         if (newTitle === '') return; // TODO: improve w/ error message
+        console.log('Selected date before submission:', selectedDate); // Debug log
+        console.log('Selected date converted:', selectedDate); // Debug log
+    
         const newTodo = await createTodo({
           title: newTitle,
           user_id: process.env.DB_USER, // UPDATE W/ ID ASSOCIATED W/ LOGIN
+          deadline: selectedDate,
         });
+        console.log('Todo data being sent:', newTodo); // Debug log
         // append new todo list
         setTodos([...todos, newTodo]);
         setNewTitle('');
+        setSelectedDate(null);
+        setTodoToggle(false);
       } catch (error) {
         console.error('Failed to create new todo: ', error);
       }

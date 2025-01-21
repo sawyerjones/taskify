@@ -5,10 +5,11 @@ const pool = require('../db');
 // creates todo
 router.post('/', async (req, res) => {
   try {
-    const { title, user_id } = req.body;
+    const { title, user_id, deadline } = req.body;
+    console.log('Received in backend:', { title, user_id, deadline }); // Debug log
     const newTodo = await pool.query(
-      'INSERT INTO todos (title, user_id) VALUES ($1, $2) RETURNING *',
-      [title, user_id]
+      'INSERT INTO todos (title, user_id, deadline) VALUES ($1, $2, $3) RETURNING *',
+      [title, user_id, deadline]
     );
     res.json(newTodo.rows[0]);
   } catch (err) {

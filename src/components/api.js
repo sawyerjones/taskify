@@ -13,12 +13,15 @@ export const fetchTodos = async () => {
 
 export const createTodo = async (todoData) => {
   try {
+    console.log('TodoData received in API:', todoData); // Debug log
     const response = await fetch(`${API_BASE_URL}/todos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(todoData),
+      body: JSON.stringify({...todoData,
+        deadline: todoData.deadline,
+      }),
     });
     if (!response.ok) throw new Error('Failed to create todo');
     return await response.json();

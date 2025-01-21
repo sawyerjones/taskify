@@ -21,7 +21,7 @@ CREATE TABLE public.todos (
     title text NOT NULL,
     completed boolean DEFAULT false,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    deadline timestamp
+    deadline timestamp,
 );
 
 
