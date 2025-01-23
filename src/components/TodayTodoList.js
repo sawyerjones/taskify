@@ -18,6 +18,15 @@ const TodayTodoList = () => {
     useEffect(() => {
       loadTodos();
     }, []);
+
+    // checks every hour for the date to ensure proper due/overdue
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setTodos(prevTodos => [...prevTodos]);
+      }, 3600000); // ms
+    
+      return () => clearInterval(timer);
+    }, []);
   
     const loadTodos = async () => {
       try {
