@@ -2,7 +2,8 @@ import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Sidebar from '../components/Sidebar.jsx';
 import { DashboardBox } from '../components/styles/DashboardBox.js';
-import TodoList from '../components/TodoList.js';
+import TodayTodoList from '../components/TodayTodoList.js';
+import UpcomingTodoList from '../components/UpcomingTodoList.js';
 
 const Dashboard = () => {
   document.body.style.overflow = 'hidden';
@@ -32,13 +33,14 @@ const Dashboard = () => {
           }}>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Today</Typography>
-            <TodoList></TodoList>
-            </Box>
-            <Box sx={DashboardBox}>
-            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
+            <TodayTodoList></TodayTodoList>
             </Box>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Upcoming</Typography>
+            <UpcomingTodoList></UpcomingTodoList>
+            </Box>
+            <Box sx={DashboardBox}>
+            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
             </Box>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>TBD</Typography>
@@ -50,7 +52,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-/*
-Add calendar input
-*/

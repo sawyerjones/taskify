@@ -9,7 +9,7 @@ import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/mate
 import { fetchTodos, createTodo, deleteTodo } from './api.js';
 import { TodoTextField } from './styles/TodoTextField.js';
 
-const TodoList = () => {
+const TodayTodoList = () => {
     const [todos, setTodos] = useState([]);
     const [newTitle, setNewTitle] = useState('');
     const [todoToggle, setTodoToggle] = useState(false); 
@@ -189,4 +189,4 @@ const TodoList = () => {
     );
   };
 
-  export default TodoList;
+  export default TodayTodoList;

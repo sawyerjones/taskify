@@ -33,9 +33,6 @@ export const createTodo = async (todoData) => {
 
 export const deleteTodo = async (todoID) => {
   try {
-   // const url = `${API_BASE_URL}/todos/${todoId}`;
-    //console.log('Delete URL:', url); // Debug log
-    //console.log('TodoId type:', typeof todoId);
     const response = await fetch(`${API_BASE_URL}/todos/${todoID}`, {
       method: 'DELETE',
     });
