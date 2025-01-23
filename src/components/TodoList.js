@@ -88,7 +88,10 @@ const TodoList = () => {
             color: 'black',
             padding: '8px 16px',
             borderRadius: '8px',
-            bgcolor: 'rgba(255, 255, 255, 1)',
+            bgcolor: 'grey',
+            width: 'auto',
+            minWidth: 'fit-content',
+            maxWidth: '80%',
             '&:hover': {
               bgcolor: 'rgba(255, 255, 255, .5)',
               color: 'black',
@@ -187,6 +190,3 @@ const TodoList = () => {
   };
 
   export default TodoList;
-/*
-  - styling, make "add new todo" button size dynamically
-*/
