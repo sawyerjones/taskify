@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Box
         sx={{
           bgcolor: 'background.default',
-          minHeight: '100vh',
+          minHeight: '75vh',
           display: 'flex',
           flexDirection: 'column',
           padding: 3,
@@ -28,7 +28,7 @@ const Dashboard = () => {
             borderRadius: '16px',
             minHeight: '80vh',
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)', // 4 equal columns TODO: make collapsable into 2 on smaller screens
+            gridTemplateColumns: 'repeat(3, 1fr)', // 3 equal columns TODO: make collapsable into 2 on smaller screens
             gap: 2,
           }}>
             <Box sx={DashboardBox}>
@@ -42,9 +42,6 @@ const Dashboard = () => {
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
             </Box>
-            <Box sx={DashboardBox}>
-            <Typography variant="h4" sx={{paddingLeft: '10px'}}>TBD</Typography>
-            </Box>
             
         </Box>
       </Box>
@@ -52,3 +49,9 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+/*
+<Box sx={DashboardBox}>
+<Typography variant="h4" sx={{paddingLeft: '10px'}}>TBD</Typography>
+</Box>
+*/
