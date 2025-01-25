@@ -10,11 +10,19 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
   const [newTitle, setNewTitle] = useState('');
   const [todoToggle, setTodoToggle] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [inputError, setInputError] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newTitle === '') return;
-
+    setInputError('');
+    if (newTitle === '') {
+      setInputError('Please enter a task title');
+      return;
+    }
+    if (!selectedDate) {
+      setInputError('Please enter a deadline');
+      return;
+    }
     try {
       await createTodo({
         title: newTitle,
@@ -120,6 +128,11 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
                 Add Todo
               </Button>
             </Box>
+            {inputError ? 
+              <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
+                <Typography variant='body1' sx={{color: 'red'}}>{inputError}</Typography>
+              </Box>
+            : null}
           </form>
         </Box>
       </Modal>
