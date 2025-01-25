@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
 import Sidebar from '../components/Sidebar.jsx';
 import { DashboardBox } from '../components/styles/DashboardBox.js';
 import TodayTodoList from '../components/TodayTodoList.js';
 import UpcomingTodoList from '../components/UpcomingTodoList.js';
+import AddTodoButton from '../components/AddTodoButton.js';
+import { fetchTodos } from '../components/api.js';
 
 const Dashboard = () => {
   document.body.style.overflow = 'hidden';
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
+
+  const [todos, setTodos] = useState([]);
+
+  const loadTodos = async () => {
+    try {
+      const todoData = await fetchTodos();
+      setTodos(todoData);
+    } catch (error) {
+      console.error('Failed to fetch todos:', error);
+    }
+  };
+
   return (
       <Box
         sx={{
@@ -18,6 +36,9 @@ const Dashboard = () => {
           overflow: 'hidden'
         }}>
         <Sidebar/>
+        <Box sx={{ position: 'absolute', right: '4vh', top: '40px', zIndex: 1 }}>
+          <AddTodoButton loadTodos={loadTodos}/>
+        </Box>
         <Box sx={{ marginLeft: '5vh', position: 'relative'}}>  
           <Typography variant="h2">Dashboard</Typography>
         </Box>
@@ -33,11 +54,11 @@ const Dashboard = () => {
           }}>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Today</Typography>
-            <TodayTodoList></TodayTodoList>
+            <TodayTodoList todos={todos} loadTodos={loadTodos}/>
             </Box>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Upcoming</Typography>
-            <UpcomingTodoList></UpcomingTodoList>
+            <UpcomingTodoList todos={todos} loadTodos={loadTodos} />
             </Box>
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
