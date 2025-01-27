@@ -24,7 +24,7 @@ const SignIn = () => {
               gap: 3,
             }}>
             <Typography variant="h1" component="h1" gutterBottom>
-              Welcome to *NAME*
+              Welcome to Taskify
             </Typography>
             <Box
               sx={{

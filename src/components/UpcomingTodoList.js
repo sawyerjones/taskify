@@ -8,7 +8,7 @@ const TodoList = ({ todos, loadTodos}) => {
    // loads after mount, fetches initial data
    useEffect(() => {
     loadTodos();
-  }, []);
+  }, [loadTodos]);
 
   const handleDelete = async (todoID) => {
     try {
