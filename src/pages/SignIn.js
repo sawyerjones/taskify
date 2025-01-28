@@ -10,6 +10,9 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [loginModalToggle, setLoginModalToggle] = useState(false);
   const [signupModalToggle, setSignupModalToggle] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState('');
+  const [invalidSignup, setInvalidSignup] = useState('');
+  const [emailVerification, setEmailVerification] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -33,16 +36,22 @@ const SignIn = () => {
 
     const handleSupabaseSignup = async(event) => {
       event.preventDefault();
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: 'https://google.com',
-        },
-      })
-
-      setSignupModalToggle(false);
-      navigate('/dashboard');
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          email: email,
+          password: password,
+        });
+    
+        if (error) {
+          console.error('Signup error:', error.message);
+          setInvalidSignup(error.error_description || error.message);
+          return;
+        }
+    
+        setEmailVerification(true);
+      } catch (error) {
+        console.error('Unexpected error:', error);
+      }
     };
 
 
@@ -54,13 +63,13 @@ const SignIn = () => {
       })
   
       if (error) {
-        alert(error.error_description || error.message)
+        setInvalidPassword(error.error_description || error.message);
       } else {
-        alert('Check your email for the login link!')
+        setLoginModalToggle(false);
+        setInvalidPassword('');
+        navigate('/dashboard');
       }
 
-      setLoginModalToggle(false);
-      navigate('/dashboard');
     };
 
     return (
@@ -142,9 +151,19 @@ const SignIn = () => {
                         }
                       }}
                     >
-                      Submit
+                      Sign Up
                     </Button>
                     </form>
+                    {invalidSignup ?
+                     <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
+                     <Typography variant='body1' sx={{color: 'red'}}>{invalidSignup}</Typography>
+                   </Box>
+                    : null}
+                    {emailVerification ?
+                    <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
+                    <Typography variant='body1' sx={{color: 'green'}}>Please check your email for a verfication link</Typography>
+                  </Box>
+                    : null}
                   </Box>
                 </Modal>
 
@@ -209,9 +228,14 @@ const SignIn = () => {
                         }
                       }}
                     >
-                      Submit
+                      Log In
                     </Button>
                     </form>
+                    {invalidPassword ?
+                     <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
+                     <Typography variant='body1' sx={{color: 'red'}}>{invalidPassword}</Typography>
+                   </Box>
+                    : null}
                   </Box>
                 </Modal>
               </Box>

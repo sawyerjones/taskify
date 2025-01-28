@@ -39,7 +39,7 @@ const Dashboard = () => {
         <Box sx={{ position: 'absolute', right: '4vh', top: '40px', zIndex: 1 }}>
           <AddTodoButton loadTodos={loadTodos}/>
         </Box>
-        <Box sx={{ marginLeft: '5vh', position: 'relative'}}>  
+        <Box sx={{ marginLeft: '6vh', position: 'relative'}}>  
           <Typography variant="h2">Dashboard</Typography>
         </Box>
         <Box // main container

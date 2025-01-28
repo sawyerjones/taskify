@@ -4,6 +4,7 @@ import theme from './components/styles/theme.js';
 import SignIn from './pages/SignIn.js';
 import Dashboard from './pages/Dashboard.js';
 import NotFound from './pages/NotFound.js';
+import Account from './pages/Account.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

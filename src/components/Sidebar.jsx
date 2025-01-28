@@ -5,15 +5,28 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemButton,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
+
+  const handleDashboardButton = () => {
+    setOpen(!open);
+    navigate('/dashboard');
+  };
+
+  const handleAccountButton = () => {
+    setOpen(!open);
+    navigate('/account');
+  }
 
   return (
     <>
@@ -21,8 +34,8 @@ const Sidebar = () => {
         onClick={handleDrawerToggle}
         sx={{
           position: 'fixed',
-          left: 16,
-          top: 16,
+          left: '4hv',
+          top: '30px',
         }}
       >
         <MenuIcon />
@@ -38,18 +51,16 @@ const Sidebar = () => {
         }}
       >
         <List sx={{ width: 200 }}>
-          <ListItem button>
+          <ListItemButton onClick={handleDashboardButton}>
             <ListItemText primary="Dashboard" />
-          </ListItem>
+          </ListItemButton>
           <ListItem button>
             <ListItemText primary="Projects" />
           </ListItem>
-          <ListItem button>
-            <ListItemText primary="Upcoming" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="TBD" />
-          </ListItem>
+          <ListItemButton onClick={() => navigate('/account')}>
+            <ListItemText primary="Account" />
+          </ListItemButton>
+          
         </List>
       </Drawer>
     </>
