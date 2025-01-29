@@ -49,7 +49,7 @@ const Dashboard = () => {
             borderRadius: '16px',
             minHeight: '80vh',
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)', // 3 equal columns TODO: make collapsable into 2 on smaller screens
+            gridTemplateColumns: 'repeat(2, 1fr)', // 3 equal columns TODO: make collapsable into 2 on smaller screens
             gap: 2,
           }}>
             <Box sx={DashboardBox}>
@@ -59,9 +59,6 @@ const Dashboard = () => {
             <Box sx={DashboardBox}>
             <Typography variant="h4" sx={{paddingLeft: '10px'}}>Upcoming</Typography>
             <UpcomingTodoList todos={todos} loadTodos={loadTodos} />
-            </Box>
-            <Box sx={DashboardBox}>
-            <Typography variant="h4" sx={{paddingLeft: '10px'}}>Projects</Typography>
             </Box>
             
         </Box>
