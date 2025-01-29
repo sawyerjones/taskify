@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, TextField, Modal } from '@mui/material';
 import { supabase } from '../db/supabaseClient';
 import Sidebar from '../components/Sidebar';
+import { TodoTextField } from '../components/styles/TodoTextField';
 
 const AccountPage = () => {
   const [user, setUser] = useState(null);
@@ -9,6 +10,10 @@ const AccountPage = () => {
   const [email, setEmail] = useState('');
   const [updateError, setUpdateError] = useState('');
   const [updateSuccess, setUpdateSuccess] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [resetPasswordToggle, setResetPasswordToggle] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -39,6 +44,17 @@ const AccountPage = () => {
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
+  };
+
+  const handlePasswordReset = async (event) => {
+    event.preventDefault();
+    if (newPassword !== passwordConfirmation) {
+      setPasswordMatch(false);
+    } 
+
+    await supabase.auth.updateUser({ password: newPassword });
+    setPasswordMatch(true);
+    setResetPasswordToggle(false);
   };
 
   if (loading) {
@@ -83,10 +99,7 @@ const AccountPage = () => {
             <Typography variant="h4" sx={{ mb: 2 }}>Account Security</Typography>
             <Button 
               variant="contained"
-              onClick={() => {
-                const { data } = supabase.auth.resetPasswordForEmail(email);
-                setUpdateSuccess('Password reset email sent!');
-              }}
+              onClick={() => setResetPasswordToggle(true)}
               sx={{ 
                 mr: 2,
                 bgcolor: 'white',
@@ -111,6 +124,71 @@ const AccountPage = () => {
             >
               Sign Out
             </Button>
+            <Modal
+              open={resetPasswordToggle}
+              onClose={() => setResetPasswordToggle(false)}
+              aria-labelledby="modal-modal-title"
+              >
+                <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 400,
+                    bgcolor: 'background.default',
+                    border: '1px solid #000',
+                    borderRadius: 2,
+                    boxShadow: 24,
+                    p: 4,
+                  }}>
+                    <form onSubmit={handlePasswordReset}>
+                    <TextField
+                      fullWidth
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Enter New Password"
+                      sx={TodoTextField}
+                      type="password"
+                      autoComplete="new-password"  // prevents autocomplete
+                      inputProps={{
+                        autoCapitalize: 'none',    // prevents automatic capitalization
+                        'data-lpignore': true      // prevents LastPass from auto-filling
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      value={passwordConfirmation}
+                      onChange={(e) => setPasswordConfirmation(e.target.value)}
+                      placeholder="Confirm Password"
+                      sx={TodoTextField}
+                      type="password"
+                      autoComplete="new-password"  // prevents autocomplete
+                      inputProps={{
+                        autoCapitalize: 'none',    // prevents automatic capitalization
+                        'data-lpignore': true      // prevents LastPass from auto-filling
+                      }}
+                    />
+                    <Button 
+                      variant="contained"
+                      type="submit"
+                      sx={{ 
+                        bgcolor: 'white',
+                        color: 'black',
+                        '&:hover': {
+                          bgcolor: 'rgba(255, 255, 255, 0.8)',
+                        }
+                      }}
+                    >
+                      Submit
+                    </Button>
+                    {!passwordMatch ?
+                     <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
+                      <Typography variant='body1' sx={{color: 'red'}}>Please make sure the provided passwords match!</Typography>
+                    </Box>
+                    : null}
+                    </form>
+                  </Box>
+              </Modal>
           </Box>
 
           {updateError && (
