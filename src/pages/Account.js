@@ -8,8 +8,6 @@ const AccountPage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
-  const [updateError, setUpdateError] = useState('');
-  const [updateSuccess, setUpdateSuccess] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [resetPasswordToggle, setResetPasswordToggle] = useState(false);
@@ -190,18 +188,6 @@ const AccountPage = () => {
                   </Box>
               </Modal>
           </Box>
-
-          {updateError && (
-            <Typography color="red" sx={{ mb: 2 }}>
-              {updateError}
-            </Typography>
-          )}
-
-          {updateSuccess && (
-            <Typography color="green" sx={{ mb: 2 }}>
-              {updateSuccess}
-            </Typography>
-          )}
         </Box>
       </Box>
     </Box>

@@ -2,22 +2,26 @@ import React, { useEffect } from 'react';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import dayjs from 'dayjs';
 import { Typography, IconButton } from '@mui/material';
-import { deleteTodo } from './api.js';
+import { supabase } from '../db/supabaseClient.js';
 
 const TodoList = ({ todos, loadTodos}) => {
    // loads after mount, fetches initial data
    useEffect(() => {
     loadTodos();
-  }, [loadTodos]);
+  }, []);
 
-  const handleDelete = async (todoID) => {
+  const handleDelete = async (id) => {
     try {
-       // remove from db
-      await deleteTodo(todoID);
-      // remove from render
+      const { error } = await supabase
+        .from('todos')
+        .delete()
+        .eq('id', id);
+  
+      if (error) throw error;
+      
       loadTodos();
     } catch (error) {
-      console.error('Failed to delete todo', error);
+      console.error('Failed to delete todo:', error);
     }
   };
 

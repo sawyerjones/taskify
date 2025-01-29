@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { createTodo } from './api';
 import TodoCal from './TodoCal';
 import { TodoTextField } from './styles/TodoTextField';
+import { supabase } from '../db/supabaseClient';  // Add this import
 
 const AddTodoButton = ({ loadTodos, buttonStyle }) => {
   const [newTitle, setNewTitle] = useState('');
@@ -24,18 +24,32 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
       return;
     }
     try {
-      await createTodo({
-        title: newTitle,
-        user_id: process.env.DB_USER,
-        deadline: selectedDate,
-      });
+      // get current session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        setInputError('You must be logged in to create todos');
+        return;
+      }
+
+      // insert the new todo into supabase
+      const { error } = await supabase
+        .from('todos')
+        .insert({  
+          title: newTitle,
+          user_id: session.user.id,
+          deadline: selectedDate,
+          completed: false
+        });
+
+      if (error) throw error;
       
+      setTodoToggle(false);
       await loadTodos();
       setNewTitle('');
       setSelectedDate(null);
-      setTodoToggle(false);
     } catch (error) {
       console.error('Failed to create new todo:', error);
+      setInputError('Failed to create todo. Please try again.');
     }
   };
 

@@ -5,7 +5,7 @@ import { DashboardBox } from '../components/styles/DashboardBox.js';
 import TodayTodoList from '../components/TodayTodoList.js';
 import UpcomingTodoList from '../components/UpcomingTodoList.js';
 import AddTodoButton from '../components/AddTodoButton.js';
-import { fetchTodos } from '../components/api.js';
+import { supabase } from '../db/supabaseClient.js';
 
 const Dashboard = () => {
   document.body.style.overflow = 'hidden';
@@ -18,8 +18,20 @@ const Dashboard = () => {
 
   const loadTodos = async () => {
     try {
-      const todoData = await fetchTodos();
-      setTodos(todoData);
+      // Get the current user's session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      // Fetch todos for the current user
+      const { data: todos, error } = await supabase
+        .from('todos')
+        .select('*')
+        .eq('user_id', session.user.id)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      setTodos(todos);
     } catch (error) {
       console.error('Failed to fetch todos:', error);
     }
