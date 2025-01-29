@@ -54,9 +54,6 @@ const Sidebar = () => {
           <ListItemButton onClick={handleDashboardButton}>
             <ListItemText primary="Dashboard" />
           </ListItemButton>
-          <ListItem button>
-            <ListItemText primary="Projects" />
-          </ListItem>
           <ListItemButton onClick={() => navigate('/account')}>
             <ListItemText primary="Account" />
           </ListItemButton>
