@@ -9,7 +9,7 @@ import Account from './pages/Account.js';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/taskify">
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
