@@ -3,6 +3,7 @@ import { Typography, Box, Button, TextField, Modal } from '@mui/material';
 import { supabase } from '../db/supabaseClient';
 import Sidebar from '../components/Sidebar';
 import { TodoTextField } from '../components/styles/TodoTextField';
+import { useNavigate } from 'react-router-dom';
 
 const AccountPage = () => {
   const [user, setUser] = useState(null);
@@ -12,6 +13,8 @@ const AccountPage = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [resetPasswordToggle, setResetPasswordToggle] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,6 +45,8 @@ const AccountPage = () => {
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
+
+    navigate('/');
   };
 
   const handlePasswordReset = async (event) => {
