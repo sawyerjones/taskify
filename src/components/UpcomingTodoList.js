@@ -29,7 +29,7 @@ const TodoList = ({ todos, loadTodos}) => {
     const filteredTodos = todos.filter(todo => {
       if (!todo.deadline) return false;
       const todoDate = dayjs(todo.deadline);
-      return todoDate.format('YYYY-MM-DD') !== dayjs().format('YYYY-MM-DD');
+      return todoDate.format('YYYY-MM-DD') > dayjs().format('YYYY-MM-DD');
     });
 
     return(

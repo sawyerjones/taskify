@@ -26,6 +26,15 @@ const TodayTodoList = ({ todos, loadTodos}) => {
     }
   };
 
+    // filter overdue todos
+    const overdueTodos = todos.filter(todo => {
+      if (!todo.deadline) return false;
+      const todoDate = dayjs(todo.deadline);
+      return todoDate.format('YYYY-MM-DD') < dayjs().format('YYYY-MM-DD');
+    });
+
+    console.log(overdueTodos);
+
     // filter today's todos
     const filteredTodos = todos.filter(todo => {
       if (!todo.deadline) return false;
@@ -35,6 +44,29 @@ const TodayTodoList = ({ todos, loadTodos}) => {
 
     return(
     <div>
+      <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
+        {overdueTodos.length === 0 ? (
+            <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
+              Nothing Overdue
+            </Typography>
+          ) : (
+            overdueTodos.map(todo => (
+              <li key={todo.id} style={{ color: 'red', fontSize: '1.3rem',}}>
+                <IconButton onClick={() => handleDelete(todo.id)}
+                  sx={{
+                    color: 'black',
+                    paddingRight: '12px',
+                    '&:hover': {
+                      color: 'gray'
+                    },
+                  }}>
+                  <CheckCircleOutlinedIcon />
+                </IconButton>
+                {todo.title} (Overdue!)
+              </li>
+            ))
+          )}
+        </ul>
         <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
         {filteredTodos.length === 0 ? (
             <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
@@ -63,3 +95,6 @@ const TodayTodoList = ({ todos, loadTodos}) => {
   };
 
   export default TodayTodoList;
+
+
+  /* Adding overdue todos is putting them in the upcoming filter as well */
