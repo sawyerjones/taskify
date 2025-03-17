@@ -11,4 +11,4 @@ jobs:
 
     steps:
       - name: Send HTTP Request
-        run: curl https://sawyerjones.github.io/taskify/src/api/supabase-activity-scheduler
+        run: curl https://sawyerjones.github.io/taskify/api/supabase-activity-scheduler
