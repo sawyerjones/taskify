@@ -63,9 +63,9 @@ const Dashboard = () => {
       <Box
         sx={{
           background: 'linear-gradient(135deg, #6C9A8B 0%, #4A7A6B 100%)',
-          pt: { xs: 8, md: 6 },
-          pb: { xs: 4, md: 5 },
-          px: { xs: 3, md: 6 },
+          pt: { xs: 8, md: 2 },
+          pb: { xs: 4, md: 3 },
+          px: { xs: 3, md: 9 },
           position: 'relative',
           overflow: 'hidden',
         }}>
@@ -132,7 +132,7 @@ const Dashboard = () => {
             sx={{
               display: 'flex',
               gap: 3,
-              mt: 4,
+              mt: 1,
               flexWrap: 'wrap',
             }}>
             <Box
