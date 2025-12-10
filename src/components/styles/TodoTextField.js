@@ -1,12 +1,12 @@
 export const TodoTextField = {
   mb: 2,
-  '& .MuiInputBase-input': { 
-    color: 'black',
+  '& .MuiInputBase-input': {
+    color: '#354042',
   },
   '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
+    borderColor: '#354042',
   },
   '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'black',
-  },   
+    borderColor: '#354042',
+  },
 };

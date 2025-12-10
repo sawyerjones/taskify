@@ -95,7 +95,7 @@ const SignIn = () => {
                 sx={{ 
                   minWidth: '120px',
                   '&:hover': {
-                    backgroundColor: '#333333'
+                    backgroundColor: '#889063'
                   },
                   fontSize: '1.3rem',
                   padding: '10px 28px'
@@ -114,7 +114,7 @@ const SignIn = () => {
                     transform: 'translate(-50%, -50%)',
                     width: 400,
                     bgcolor: 'background.default',
-                    border: '1px solid #000',
+                    border: '1px solid #354042',
                     borderRadius: 2,
                     boxShadow: 24,
                     p: 4,
@@ -140,14 +140,14 @@ const SignIn = () => {
                         'data-lpignore': true      // prevents LastPass from auto-filling
                       }}
                     />
-                    <Button 
+                    <Button
                       variant="contained"
                       type="submit"
-                      sx={{ 
-                        bgcolor: 'white',
-                        color: 'black',
+                      sx={{
+                        bgcolor: '#889063',
+                        color: '#E5D7C4',
                         '&:hover': {
-                          bgcolor: 'rgba(255, 255, 255, 0.8)',
+                          bgcolor: '#4C3D19',
                         }
                       }}
                     >
@@ -172,7 +172,7 @@ const SignIn = () => {
                 sx={{ 
                   minWidth: '120px',
                   '&:hover': {
-                    backgroundColor: '#333333'
+                    backgroundColor: '#889063'
                   },
                   fontSize: '1.3rem',
                   padding: '10px 28px'
@@ -191,7 +191,7 @@ const SignIn = () => {
                     transform: 'translate(-50%, -50%)',
                     width: 400,
                     bgcolor: 'background.default',
-                    border: '1px solid #000',
+                    border: '1px solid #354042',
                     borderRadius: 2,
                     boxShadow: 24,
                     p: 4,
@@ -217,14 +217,14 @@ const SignIn = () => {
                         'data-lpignore': true      // prevents LastPass from auto-filling
                       }}
                     />
-                    <Button 
+                    <Button
                       variant="contained"
                       type="submit"
-                      sx={{ 
-                        bgcolor: 'white',
-                        color: 'black',
+                      sx={{
+                        bgcolor: '#889063',
+                        color: '#E5D7C4',
                         '&:hover': {
-                          bgcolor: 'rgba(255, 255, 255, 0.8)',
+                          bgcolor: '#4C3D19',
                         }
                       }}
                     >

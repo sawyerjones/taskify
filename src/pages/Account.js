@@ -103,12 +103,12 @@ const AccountPage = () => {
             <Button 
               variant="contained"
               onClick={() => setResetPasswordToggle(true)}
-              sx={{ 
+              sx={{
                 mr: 2,
-                bgcolor: 'white',
-                color: 'black',
+                bgcolor: '#889063',
+                color: '#E5D7C4',
                 '&:hover': {
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
+                  bgcolor: '#4C3D19',
                 }
               }}
             >
@@ -117,11 +117,11 @@ const AccountPage = () => {
             <Button 
               variant="contained" 
               onClick={handleSignOut}
-              sx={{ 
-                bgcolor: 'white',
-                color: 'black',
+              sx={{
+                bgcolor: '#889063',
+                color: '#E5D7C4',
                 '&:hover': {
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
+                  bgcolor: '#4C3D19',
                 }
               }}
             >
@@ -139,7 +139,7 @@ const AccountPage = () => {
                     transform: 'translate(-50%, -50%)',
                     width: 400,
                     bgcolor: 'background.default',
-                    border: '1px solid #000',
+                    border: '1px solid #354042',
                     borderRadius: 2,
                     boxShadow: 24,
                     p: 4,
