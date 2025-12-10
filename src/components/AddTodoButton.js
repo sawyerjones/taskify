@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Typography, Modal, IconButton, TextField, Button } from '@mui/material';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import TodoCal from './TodoCal';
 import { TodoTextField } from './styles/TodoTextField';
-import { supabase } from '../db/supabaseClient';  // Add this import
+import { supabase } from '../db/supabaseClient';
 
 const AddTodoButton = ({ loadTodos, buttonStyle }) => {
   const [newTitle, setNewTitle] = useState('');
@@ -24,17 +24,15 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
       return;
     }
     try {
-      // get current session
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         setInputError('You must be logged in to create todos');
         return;
       }
 
-      // insert the new todo into supabase
       const { error } = await supabase
         .from('todos')
-        .insert({  
+        .insert({
           title: newTitle,
           user_id: session.user.id,
           deadline: selectedDate,
@@ -42,7 +40,7 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
         });
 
       if (error) throw error;
-      
+
       setTodoToggle(false);
       await loadTodos();
       setNewTitle('');
@@ -60,71 +58,105 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
   return (
     <>
       <Box sx={{
-        marginTop: '0.5vh',
         display: 'flex',
         justifyContent: 'center',
-        width: '100%',
         ...buttonStyle
       }}>
-        <IconButton
+        <Button
+          variant="contained"
           onClick={() => setTodoToggle(true)}
+          startIcon={<AddIcon sx={{ fontSize: 20 }} />}
           sx={{
-            color: '#E5D7C4',
-            padding: '8px 16px',
-            borderRadius: '8px',
-            bgcolor: '#889063',
-            width: 'auto',
-            minWidth: 'fit-content',
-            maxWidth: '80%',
+            backgroundColor: '#FFFFFF',
+            color: '#2D3436',
+            fontWeight: 600,
+            fontSize: '0.95rem',
+            padding: '10px 20px',
+            borderRadius: 3,
+            boxShadow: '0px 4px 14px rgba(45, 52, 54, 0.12)',
+            transition: 'all 0.2s ease-in-out',
             '&:hover': {
-              bgcolor: '#CFBB99',
-              color: '#354042',
+              backgroundColor: '#FFFFFF',
+              boxShadow: '0px 6px 20px rgba(45, 52, 54, 0.18)',
+              transform: 'translateY(-2px)',
             },
           }}>
-          <AddCircleOutlineOutlinedIcon />
-          <Typography variant="h5">Add New Todo</Typography>
-          <AddCircleOutlineOutlinedIcon sx={{ marginLeft: '4px' }}/>
-        </IconButton>
+          Add Task
+        </Button>
       </Box>
 
       <Modal
         open={todoToggle}
         onClose={() => setTodoToggle(false)}
-        aria-labelledby="modal-modal-title"
+        aria-labelledby="add-todo-modal"
+        sx={{
+          '& .MuiBackdrop-root': {
+            backgroundColor: 'rgba(45, 52, 54, 0.6)',
+            backdropFilter: 'blur(4px)',
+          },
+        }}
       >
         <Box sx={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
-          bgcolor: 'background.default',
-          border: '1px solid #354042',
-          borderRadius: 2,
-          boxShadow: 24,
+          width: { xs: '90%', sm: 440 },
+          bgcolor: '#FFFFFF',
+          borderRadius: 4,
+          boxShadow: '0px 24px 48px rgba(45, 52, 54, 0.16)',
           p: 4,
         }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography id="modal-modal-title" variant="h6" sx={{ color: '#354042' }}>
-              Create New Todo
-            </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Box>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                  color: '#2D3436',
+                  fontSize: '1.25rem',
+                }}>
+                Create New Task
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: '#B2BEC3', mt: 0.5 }}>
+                Add a task to your todo list
+              </Typography>
+            </Box>
             <IconButton
               onClick={() => setTodoToggle(false)}
-              sx={{ color: '#354042' }}
+              sx={{
+                color: '#B2BEC3',
+                '&:hover': {
+                  backgroundColor: 'rgba(45, 52, 54, 0.08)',
+                  color: '#636E72',
+                },
+              }}
             >
               <CloseIcon />
             </IconButton>
           </Box>
+
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              placeholder="Task name"
-              sx={TodoTextField}
+              placeholder="What needs to be done?"
+              sx={{
+                ...TodoTextField,
+                mb: 3,
+              }}
             />
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-              <TodoCal 
+
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 2,
+            }}>
+              <TodoCal
                 selectedDate={selectedDate}
                 onDateChange={handleDateChange}
               />
@@ -132,21 +164,36 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
                 variant="contained"
                 type="submit"
                 sx={{
-                  bgcolor: '#889063',
-                  color: '#E5D7C4',
+                  backgroundColor: '#6C9A8B',
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                  px: 3,
+                  py: 1.25,
+                  borderRadius: 2.5,
+                  boxShadow: '0px 4px 14px rgba(108, 154, 139, 0.3)',
                   '&:hover': {
-                    bgcolor: '#4C3D19',
-                  }
+                    backgroundColor: '#5A8879',
+                    boxShadow: '0px 6px 20px rgba(108, 154, 139, 0.4)',
+                  },
                 }}
               >
-                Add Todo
+                Add Task
               </Button>
             </Box>
-            {inputError ? 
-              <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '0.5vh'}}>
-                <Typography variant='body1' sx={{color: 'red'}}>{inputError}</Typography>
+
+            {inputError && (
+              <Box sx={{
+                mt: 2.5,
+                p: 2,
+                borderRadius: 2,
+                backgroundColor: 'rgba(192, 57, 43, 0.08)',
+                border: '1px solid rgba(192, 57, 43, 0.2)',
+              }}>
+                <Typography variant='body2' sx={{ color: '#C0392B', textAlign: 'center' }}>
+                  {inputError}
+                </Typography>
               </Box>
-            : null}
+            )}
           </form>
         </Box>
       </Modal>
