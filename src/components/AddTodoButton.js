@@ -66,19 +66,19 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
         width: '100%',
         ...buttonStyle
       }}>
-        <IconButton 
+        <IconButton
           onClick={() => setTodoToggle(true)}
           sx={{
-            color: 'black',
+            color: '#E5D7C4',
             padding: '8px 16px',
             borderRadius: '8px',
-            bgcolor: 'grey',
+            bgcolor: '#889063',
             width: 'auto',
             minWidth: 'fit-content',
             maxWidth: '80%',
             '&:hover': {
-              bgcolor: 'rgba(255, 255, 255, .5)',
-              color: 'black',
+              bgcolor: '#CFBB99',
+              color: '#354042',
             },
           }}>
           <AddCircleOutlineOutlinedIcon />
@@ -99,18 +99,18 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
           transform: 'translate(-50%, -50%)',
           width: 400,
           bgcolor: 'background.default',
-          border: '1px solid #000',
+          border: '1px solid #354042',
           borderRadius: 2,
           boxShadow: 24,
           p: 4,
         }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography id="modal-modal-title" variant="h6" sx={{ color: 'black' }}>
+            <Typography id="modal-modal-title" variant="h6" sx={{ color: '#354042' }}>
               Create New Todo
             </Typography>
-            <IconButton 
+            <IconButton
               onClick={() => setTodoToggle(false)}
-              sx={{ color: 'black' }}
+              sx={{ color: '#354042' }}
             >
               <CloseIcon />
             </IconButton>
@@ -128,14 +128,14 @@ const AddTodoButton = ({ loadTodos, buttonStyle }) => {
                 selectedDate={selectedDate}
                 onDateChange={handleDateChange}
               />
-              <Button 
+              <Button
                 variant="contained"
                 type="submit"
-                sx={{ 
-                  bgcolor: 'white',
-                  color: 'black',
+                sx={{
+                  bgcolor: '#889063',
+                  color: '#E5D7C4',
                   '&:hover': {
-                    bgcolor: 'rgba(255, 255, 255, 0.8)',
+                    bgcolor: '#4C3D19',
                   }
                 }}
               >

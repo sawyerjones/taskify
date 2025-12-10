@@ -20,12 +20,12 @@ const theme = createTheme({
         h1: {
           fontWeight: 600,
           fontSize: '3rem',
-          color: 'black',
+          color: '#354042',
         },
         h4: {
           fontWeight: 500,
           fontSize: '1.75rem',
-          color: 'black',
+          color: '#354042',
         },
         body1: {
           fontWeight: 400,
@@ -39,20 +39,20 @@ const theme = createTheme({
     },
     palette: {
       primary: {
-        main: '#000', 
+        main: '#889063',
       },
       secondary: {
-        main: '#888', 
+        main: '#354042',
       },
       tertiary: {
-        main: '#fff'
+        main: '#CFBB99'
       },
       background: {
-        default: 'white',
+        default: '#E5D7C4',
       },
       signs: {
-        main: "#656565",
-        contrastText: '#fff',
+        main: "#4C3D19",
+        contrastText: '#E5D7C4',
       },
     },
   })

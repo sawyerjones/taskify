@@ -44,7 +44,7 @@ const TodayTodoList = ({ todos, loadTodos}) => {
 
     return(
     <div>
-      <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
+      <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: '#354042'}}>
         {overdueTodos.length === 0 ? (
             <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
               Nothing Overdue
@@ -54,10 +54,10 @@ const TodayTodoList = ({ todos, loadTodos}) => {
               <li key={todo.id} style={{ color: 'red', fontSize: '1.3rem',}}>
                 <IconButton onClick={() => handleDelete(todo.id)}
                   sx={{
-                    color: 'black',
+                    color: '#354042',
                     paddingRight: '12px',
                     '&:hover': {
-                      color: 'gray'
+                      color: '#889063'
                     },
                   }}>
                   <CheckCircleOutlinedIcon />
@@ -67,20 +67,20 @@ const TodayTodoList = ({ todos, loadTodos}) => {
             ))
           )}
         </ul>
-        <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: 'black'}}>
+        <ul style={{listStyleType: 'none', margin: 0, padding: 0, color: '#354042'}}>
         {filteredTodos.length === 0 ? (
             <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
               Nothing Due Today
             </Typography>
           ) : (
             filteredTodos.map(todo => (
-              <li key={todo.id} style={{ color: 'black', fontSize: '1.3rem',}}>
+              <li key={todo.id} style={{ color: '#354042', fontSize: '1.3rem',}}>
                 <IconButton onClick={() => handleDelete(todo.id)}
                   sx={{
-                    color: 'black',
+                    color: '#354042',
                     paddingRight: '12px',
                     '&:hover': {
-                      color: 'gray'
+                      color: '#889063'
                     },
                   }}>
                   <CheckCircleOutlinedIcon />
